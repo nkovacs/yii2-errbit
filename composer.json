@@ -1,0 +1,22 @@
+{
+    "name": "nkovacs/yii2-errbit",
+    "description": "Logs errors to [errbit](https://github.com/errbit/errbit)",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension","errbit"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Nikola Kovacs",
+            "email": "nikola.kovacs@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*",
+        "emgiezet/errbit-php": "~1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "nkovacs\\errbit\\": ""
+        }
+    }
+}
