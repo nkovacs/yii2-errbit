@@ -2,6 +2,7 @@
 
 namespace nkovacs\errbit;
 
+use Yii;
 use Errbit\Errbit;
 use yii\base\InvalidConfigException;
 
@@ -52,7 +53,15 @@ trait ErrorHandlerTrait
 
     protected function logException($exception)
     {
-        Errbit::instance()->notify($exception);
+        $opts = [];
+        $controller = Yii::$app->controller;
+        if ($controller !== null) {
+            $opts['controller'] = $controller->uniqueId;
+            if ($controller->action !== null) {
+                $opts['action'] = $controller->action->id;
+            }
+        }
+        Errbit::instance()->notify($exception, $opts);
         parent::logException($exception);
     }
 }
