@@ -92,3 +92,6 @@ To enable the js notifier:
 ```
 
 You can pass additional options to the js plugin using the `jsOptions` property.
+
+If the controller implements `UserInfoInterface`, the information returned by `getErrbitUserInfo` will also be
+sent to errbit.

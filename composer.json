@@ -12,7 +12,7 @@
     ],
     "require": {
         "yiisoft/yii2": "*",
-        "emgiezet/errbit-php": "~1.0"
+        "nkovacs/errbit-php": "~1.0.5"
     },
     "autoload": {
         "psr-4": {

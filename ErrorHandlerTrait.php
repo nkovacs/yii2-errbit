@@ -60,6 +60,9 @@ trait ErrorHandlerTrait
             if ($controller->action !== null) {
                 $opts['action'] = $controller->action->id;
             }
+            if ($controller instanceof UserInfoInterface) {
+                $opts['user'] = $controller->getErrbitUserInfo();
+            }
         }
         Errbit::instance()->notify($exception, $opts);
         parent::logException($exception);

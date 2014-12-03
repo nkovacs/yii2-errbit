@@ -53,6 +53,14 @@ class WebErrorHandler extends \yii\web\ErrorHandler
                         }
                     }
 
+                    $controller = Yii::$app->controller;
+                    if ($controller !== null && $controller instanceof UserInfoInterface) {
+                        $user = $controller->getErrbitUserInfo();
+                        if (is_array($user)) {
+                            $js .= 'Airbrake.setCurrentUser(' . Json::encode($user) . ');';
+                        }
+                    }
+
                     $event->sender->registerJs(
                         $js,
                         \yii\web\View::POS_HEAD
