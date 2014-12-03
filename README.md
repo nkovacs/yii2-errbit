@@ -68,9 +68,27 @@ You can pass additional options to errbitPHP:
                 'api_key' => 'your api key',
                 'host' => 'errbit.example.org',
                 'environment_name' => 'development',
-            ]
+            ],
         ],
     ],
 ...
 ```
 
+To enable the js notifier:
+
+```php
+...
+    'components' => [
+        'errorHandler' => [
+            'class' => 'nkovacs\errbit\WebErrorHandler',
+            `errbit` => [
+                'api_key' => 'your api key',
+                'host' => 'errbit.example.org',
+            ],
+            'jsNotifier' => true,
+        ],
+    ],
+...
+```
+
+You can pass additional options to the js plugin using the `jsOptions` property.
