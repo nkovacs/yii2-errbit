@@ -35,18 +35,18 @@ trait ErrorHandlerTrait
         ];
 
         if (is_array($this->errbit)) {
-            $config = array_merge($config, $this->errbit);
+            $this->errbit = array_merge($config, $this->errbit);
         }
 
-        if ($config['api_key'] === null) {
+        if ($this->errbit['api_key'] === null) {
             throw new InvalidConfigException('Errbit API key is required.');
         }
-        if ($config['host'] === null) {
+        if ($this->errbit['host'] === null) {
             throw new InvalidConfigException('Errbit host is required.');
         }
 
         Errbit::instance()
-            ->configure($config);
+            ->configure($this->errbit);
 
         parent::register();
     }
