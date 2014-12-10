@@ -38,7 +38,6 @@ class WebErrorHandler extends \yii\web\ErrorHandler
                     }
                     $event->sender->registerJsFile(rtrim($host, '/') . '/javascripts/notifier.js', [
                         'position' => \yii\web\View::POS_HEAD,
-                        'api_key' => 'b0e150f34e894c52357b9febae1fed5d'
                     ]);
 
                     $js = 'Airbrake.setKey(' . Json::encode($this->errbit['api_key']) . ');';
