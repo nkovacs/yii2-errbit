@@ -51,7 +51,7 @@ trait ErrorHandlerTrait
         parent::register();
     }
 
-    protected function logException($exception)
+    public function logException($exception)
     {
         $opts = [];
         $controller = Yii::$app->controller;
