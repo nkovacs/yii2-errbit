@@ -40,15 +40,15 @@ class WebErrorHandler extends \yii\web\ErrorHandler
                         'position' => \yii\web\View::POS_HEAD,
                     ]);
 
-                    $js = 'Airbrake.setKey(' . Json::encode($this->errbit['api_key']) . ');';
-                    $js .= 'Airbrake.setHost(' . Json::encode($this->errbit['host']) . ');';
+                    $js = 'Airbrake.setKey(' . Json::htmlEncode($this->errbit['api_key']) . ');';
+                    $js .= 'Airbrake.setHost(' . Json::htmlEncode($this->errbit['host']) . ');';
                     if (isset($this->errbit['environment_name'])) {
-                        $js .= 'Airbrake.setEnvironment(' . Json::encode($this->errbit['environment_name']) . ');';
+                        $js .= 'Airbrake.setEnvironment(' . Json::htmlEncode($this->errbit['environment_name']) . ');';
                     }
 
                     if (is_array($this->jsOptions)) {
                         foreach ($this->jsOptions as $key => $value) {
-                            $js .= 'Airbrake.set' . ucfirst($key) . '(' . Json::encode($value) . ');';
+                            $js .= 'Airbrake.set' . ucfirst($key) . '(' . Json::htmlEncode($value) . ');';
                         }
                     }
 
@@ -56,7 +56,7 @@ class WebErrorHandler extends \yii\web\ErrorHandler
                     if ($controller !== null && $controller instanceof UserInfoInterface) {
                         $user = $controller->getErrbitUserInfo();
                         if (is_array($user)) {
-                            $js .= 'Airbrake.setCurrentUser(' . Json::encode($user) . ');';
+                            $js .= 'Airbrake.setCurrentUser(' . Json::htmlEncode($user) . ');';
                         }
                     }
 

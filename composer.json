@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "yiisoft/yii2": "~2.0.3",
+        "yiisoft/yii2": "~2.0.4",
         "nkovacs/errbit-php": "~1.0.5"
     },
     "autoload": {
