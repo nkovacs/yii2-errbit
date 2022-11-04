@@ -2,9 +2,12 @@
 
 namespace nkovacs\errbit;
 
-use Yii;
 use Errbit\Errbit;
+use Errbit\Writer\SocketWriter;
+use Errbit\Writer\WriterInterface;
+use Yii;
 use yii\base\InvalidConfigException;
+use yii\di\Instance;
 
 /**
  * ErrorHandlerTrait should be attached to an error handler.
@@ -27,6 +30,11 @@ trait ErrorHandlerTrait
      */
     public $errbit;
 
+    /**
+     * @var WriterInterface|string|array 
+     */
+    public $writer = SocketWriter::class;
+
     public function register()
     {
         $config = [
@@ -45,8 +53,12 @@ trait ErrorHandlerTrait
             throw new InvalidConfigException('Errbit host is required.');
         }
 
-        Errbit::instance()
-            ->configure($this->errbit);
+        $instance = Errbit::instance();
+        $instance->configure($this->errbit);
+
+        $writer = Instance::ensure($this->writer, WriterInterface::class);
+
+        $instance->setWriter($writer);
 
         parent::register();
     }
